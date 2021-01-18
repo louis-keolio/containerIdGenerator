@@ -126,7 +126,7 @@ class ContainerNumberValidator:
 if __name__ == '__main__':
     validator = ContainerNumberValidator()
 
-    GENERATE_COUNT = 1000000
+    GENERATE_COUNT = 50
     LETTERS = list(ContainerNumberValidator.LETTER_NUMBERS.keys())
 
     generated = []
@@ -139,13 +139,5 @@ if __name__ == '__main__':
         container_number_raw = owner + category + serial_number
         checksum = validator.get_checksum(container_number_raw)
         container_number = container_number_raw + str(checksum)
-
-        generated.append(container_number)
-
-        if i == 1 or i == GENERATE_COUNT or i % (GENERATE_COUNT / 100) == 0:
-            print(f'{i}/{GENERATE_COUNT} generated')
-
-
-    with open('container-numbers.txt', 'w') as file:
-        # Let's just write 10MB of data at once
-        file.write('\n'.join(generated))
+        
+        print(container_number)
